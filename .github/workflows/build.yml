@@ -72,7 +72,7 @@ jobs:
             echo ""
             ls -gG pkg/usr/local/lib/mupen64plus/mupen64plus-rsp-z64${LIB}.so
             echo ""
-            ldd pkg/usr/local/lib/mupen64plusmupen64plus-rsp-z64${LIB}.so
+            ldd pkg/usr/local/lib/mupen64plus/mupen64plus-rsp-z64${LIB}.so
             LIB="-hlevideo"
             MSG=" / HLEVIDEO"
           done

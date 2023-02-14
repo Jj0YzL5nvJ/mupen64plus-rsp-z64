@@ -72,7 +72,6 @@ endif
 
 # detect system architecture
 HOST_CPU ?= $(shell uname -m)
-NO_ASM ?= 1
 CPU := NONE
 ifneq ("$(filter x86_64 amd64,$(HOST_CPU))","")
   CPU := X86
@@ -121,6 +120,14 @@ ifeq ("$(CPU)","NONE")
   $(error CPU type "$(HOST_CPU)" not supported.  Please file bug report at 'https://github.com/mupen64plus/mupen64plus-core/issues')
 endif
 
+ifeq ($(HLEVIDEO), 1)
+  CFLAGS += -DVIDEO_HLE_ALLOWED
+  POSTFIX = -hlevideo
+endif
+
+SRCDIR = ../../src
+OBJDIR = _obj$(POSTFIX)
+
 # base CFLAGS, LDLIBS, and LDFLAGS
 OPTFLAGS ?= -O3 -flto
 WARNFLAGS ?= -Wall
@@ -134,11 +141,6 @@ ifeq ($(PIC), 1)
   CFLAGS += -fPIC
 else
   CFLAGS += -fno-PIC
-endif
-
-ifeq ($(HLEVIDEO), 1)
-  CFLAGS += -DVIDEO_HLE_ALLOWED
-  POSTFIX = -hlevideo
 endif
 
 ifeq ($(BIG_ENDIAN), 1)
@@ -165,9 +167,6 @@ ifeq ($(ARCH_DETECTED), 64BITS)
     LDFLAGS += -Wl,-m,i386pep
   endif
 endif
-
-SRCDIR = ../../src
-OBJDIR = _obj$(POSTFIX)
 
 # set special flags per-system
 ifeq ($(OS), LINUX)

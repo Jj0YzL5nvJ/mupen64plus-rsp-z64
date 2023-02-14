@@ -166,6 +166,9 @@ ifeq ($(ARCH_DETECTED), 64BITS)
   endif
 endif
 
+SRCDIR = ../../src
+OBJDIR = _obj$(POSTFIX)
+
 # set special flags per-system
 ifeq ($(OS), LINUX)
   # only export api symbols
@@ -258,9 +261,6 @@ endif
 ifeq ($(PLUGINDIR),)
   PLUGINDIR := $(LIBDIR)/mupen64plus
 endif
-
-SRCDIR = ../../src
-OBJDIR = _obj$(POSTFIX)
 
 # list of source files to compile
 SOURCE = \

@@ -1,4 +1,4 @@
-name: Z64 RSP
+name: Z64 RSP - Scheduled
 
 on:
   schedule:

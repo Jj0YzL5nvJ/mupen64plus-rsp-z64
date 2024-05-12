@@ -96,7 +96,7 @@ jobs:
   Nightly-build:
     runs-on: ubuntu-latest
     if: github.ref_name == 'master'
-    needs: [Linux, MSYS2, MSVC]
+    needs: [Linux, MSYS2]
     steps:
       - uses: actions/checkout@v4
       - name: Download artifacts
